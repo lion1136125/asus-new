@@ -1,0 +1,556 @@
+:root {
+  --brand-blue: #0052cc;
+  --text-main: #1a1a1a;
+  --text-light: #fff;
+  --text-dim: #666;
+  --bg-page: #ffffff;
+  --bg-section: #f7faff;
+  --line-soft: #d9e2ff;
+  --radius-card: 12px;
+  --radius-btn: 8px;
+  --shadow-card: 0 16px 40px rgba(0,0,0,0.07);
+  --max-width: 1280px;
+  --container-pad: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans KR",
+    "Apple SD Gothic Neo", Roboto, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* UTIL */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+/* HEADER */
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e8ff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  gap: 16px;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.brand-logo {
+  height: 28px;
+  object-fit: contain;
+}
+
+.brand-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.brand-desc {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.call-box { display:flex; align-items:baseline; gap:8px; }
+.call-label { font-size:0.8rem; color:var(--text-dim); font-weight:600; }
+.call-number { color: var(--brand-blue); text-decoration: none; font-size: 1.6rem; font-weight: 700; line-height:1; }
+.call-number:hover {
+  text-decoration: underline;
+}
+.call-hours {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.call-button {
+  background: var(--brand-blue);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: var(--radius-btn);
+  box-shadow: 0 8px 20px rgba(0,82,204,0.4);
+  white-space: nowrap;
+}
+
+/* HERO SECTION */
+.hero {
+  position: relative;
+  background-image: url('hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--text-light);
+}
+
+.hero-overlay {
+  padding: 48px 0 64px;
+  background: radial-gradient(circle at 30% 30%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.55) 100%);
+}
+
+.hero-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: flex-start;
+}
+
+/* MAIN HERO BLOCK */
+.hero-left-block {
+  background: rgba(0,0,0,0.28); /* 반투명 */
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  width: 100%;
+  max-width: 720px;
+  color: #fff;
+}
+
+/* 헤드라인 */
+.hero-headline-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.headline-text {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+@media (min-width: 600px) {
+  .headline-text {
+    font-size: 1.6rem;
+  }
+}
+@media (min-width: 960px) {
+  .headline-text {
+    font-size: 1.7rem;
+  }
+}
+
+/* 설명 텍스트 */
+.hero-sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.9);
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+@media (min-width: 600px) {
+  .hero-sub {
+    font-size: 1.1rem;
+  }
+}
+
+/* 한 줄 유지용 */
+.hero-bullets {
+  white-space: nowrap;
+}
+
+/* ACTION BUTTONS (온라인 / 수리 / 번호) */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;      /* 모바일: 세로 */
+  gap: 12px;
+  margin-bottom: 24px;
+}
+@media (min-width: 600px) {
+  .hero-actions {
+    flex-direction: row;       /* 큰 화면: 가로 */
+    align-items: flex-start;
+  }
+}
+
+.hero-call,
+.hero-goform,
+.headline-call {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 18px;
+  border-radius: var(--radius-btn);
+  border: 2px solid transparent;
+  background: var(--brand-blue);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0,82,204,0.6);
+  white-space: nowrap;
+}
+
+/* 대표번호(1544-6068) 버튼은 더 굵고 큼 */
+.headline-call {
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 14px 30px rgba(0,82,204,0.6);
+}
+
+/* 모바일에서
+   - hero-goform(수리 접수하기) 숨김
+   - headline-call 버튼에 " 수리 접수하기" 텍스트 자동 추가 */
+@media (max-width: 599px) {
+  .hero-goform {
+    display: none;
+  }
+  .headline-call {
+    display: flex;
+    align-items: center;
+  }
+  .headline-call::after {
+    content: " 수리 접수하기";
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 6px;
+  }
+}
+
+/* HIGHLIGHTS LIST */
+.hero-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  font-size: 1rem;
+  color: var(--text-light);
+  display: grid;
+  gap: 8px;
+  line-height: 1.5;
+}
+.hero-highlights li::before {
+  content: "✔ ";
+  color: #4cc0ff;
+  font-weight: 600;
+}
+
+/* SERVICES */
+.services {
+  background: #fff;
+  padding: 56px 0;
+  border-top: 1px solid #eef2ff;
+}
+.services h2 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-align: center;
+}
+.section-desc {
+  margin: 0 auto 32px;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  text-align: center;
+  max-width: 480px;
+  line-height: 1.5;
+}
+
+.service-grid {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 960px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.service-item {
+  background: #fff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--line-soft);
+  padding: 20px 20px 16px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+}
+.service-item .icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.service-item .title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+.service-item .desc {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* REQUEST FORM */
+.request-section {
+  background: var(--bg-section);
+  border-top: 1px solid #eef2ff;
+  padding: 56px 0;
+}
+
+.request-inner {
+  display: grid;
+  gap: 32px;
+}
+@media (min-width: 960px) {
+  .request-inner {
+    grid-template-columns: 1fr 400px;
+    align-items: flex-start;
+  }
+}
+
+.request-info h2 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.request-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  display: grid;
+  gap: 8px;
+}
+.request-highlights li::before {
+  content: "• ";
+  color: var(--brand-blue);
+  font-weight: 700;
+}
+.request-callout {
+  background: #fff;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+}
+.request-callout a {
+  color: var(--brand-blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.request-form-card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+  border: 1px solid var(--line-soft);
+  padding: 0 0 16px;
+  overflow: hidden;
+}
+.form-head {
+  background: var(--brand-blue);
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+}
+
+.form-group {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border-top: 1px solid var(--line-soft);
+}
+.form-group:first-of-type {
+  border-top: none;
+}
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 10px 12px;
+  border-radius: var(--radius-btn);
+  border: 1px solid #c7cffc;
+  background: #fff;
+  font-family: inherit;
+  line-height: 1.4;
+  color: var(--text-main);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 0;
+  border-color: var(--brand-blue);
+}
+
+.submit-btn {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 16px auto 8px;
+  border: 0;
+  border-radius: var(--radius-btn);
+  background: var(--brand-blue);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 16px;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(0,82,204,0.4);
+}
+.submit-btn:active {
+  transform: translateY(1px);
+}
+
+.form-note {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  padding: 0 16px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #0f1326;
+  color: #b5b9d8;
+  margin-top: 56px;
+  padding: 32px 0 48px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.footer-inner {
+  display: grid;
+  gap: 24px;
+}
+@media (min-width: 600px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.footer-brand {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.footer-line {
+  color: #b5b9d8;
+  word-break: keep-all;
+}
+.footer-tel {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.footer-tel:hover {
+  text-decoration: underline;
+}
+
+/* SUCCESS POPUP */
+.submit-success {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+
+  background: #0052cc;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+
+  padding: 16px 20px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: center;
+  font-weight: 500;
+}
+@media (min-width: 480px) {
+  .submit-success {
+    left: auto;
+    right: 24px;
+    bottom: 24px;
+    max-width: 320px;
+  }
+}
+
+
+
+/* --- Footer align fix --- */
+.site-footer{
+  background:#0f1326;
+  color:#b5b9d8;
+  margin-top:56px;
+  padding:32px 0 48px;
+  font-size:0.86rem;
+  line-height:1.7;
+}
+.footer-inner{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:24px;
+  align-items:start;
+}
+@media(min-width:768px){
+  .footer-inner{ grid-template-columns: 1fr 1fr; }
+}
+.footer-col .footer-line{ margin:2px 0; }
+.footer-brand{ color:#ffffff; font-weight:700; margin-bottom:6px; }
+.footer-tel{ color:#fff; text-decoration:none; font-weight:700; }
+.footer-tel:hover{ text-decoration:underline; }
+
+
+
+/* ===== Desktop header call-box hard override ===== */
+@media (min-width: 960px){
+  .site-header .header-inner .call-box{
+    display:flex !important;
+    align-items:baseline !important;
+    gap:8px !important;
+  }
+  .site-header .header-inner .call-box .call-label{
+    font-size:0.85rem !important;
+    font-weight:600 !important;
+    color:var(--text-dim) !important;
+    margin-right:6px !important;
+    order:0;
+  }
+  .site-header .header-inner .call-box .call-number{
+    line-height:1 !important;
+    text-align:left !important;
+    order:1;
+  }
+}
