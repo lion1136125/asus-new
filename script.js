@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
 
     // ⭐ Google Apps Script로 백그라운드 전송
-    fetch("https://script.google.com/macros/s/AKfycbxgvNl_yyfk0uGbZ5KqJW0KAbpHYIKFtviXNn2MlurFXpc0Aev8RoLr-tiuZK73-WU/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbyrTN2ef8oEYJ1kg4QqlnmtfihqqggZzGNRwmvPD8SK4frbj_Yh8pok2TfT2-Ncl-ed/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
