@@ -8,51 +8,39 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 기존 내용 생략: 사용자 페이지 구조 동일하게 유지 -->
-  <!-- 온라인 접수 폼 -->
-  <form class="request-form-card" id="serviceForm"
-        action="https://formsubmit.co/noteservice@outlook.kr"
-        method="POST">
 
-    <input type="hidden" name="_bcc" value="lion113@naver.com">
-    <input type="hidden" name="_subject" value="ASUS 서비스센터 신규 접수">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
+  <!-- 상단 고정 헤더 -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-row">
+          <img src="asus-logo.png" alt="ASUS 로고" class="brand-logo" onerror="this.style.display='none';" />
+          <div class="brand-title">ASUS서비스센터</div>
+        </div>
+        <div class="brand-desc">ASUS 노트북 / PC 전문 수리</div>
+      </div>
 
-    <div class="form-group">
-      <label for="custName">성함</label>
-      <input id="custName" name="성함" type="text" required />
+      <div class="call-box">
+        <div class="call-label">대표번호</div>
+        <a class="call-number" href="tel:15446068">1544-6068</a>
+      </div>
+
+      <a class="call-button" href="#request-form">상담하기</a>
     </div>
+  </header>
 
-    <div class="form-group">
-      <label for="custPhone">연락처</label>
-      <input id="custPhone" name="연락처" type="tel" required />
-    </div>
+  <!-- 히어로 섹션 -->
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="container hero-inner">
+        <div class="hero-left-block">
+          <div class="hero-headline-row">
+            <div class="headline-text">
+              ASUS 노트북 / 데스크탑 전문 수리센터
+            </div>
+          </div>
 
-    <div class="form-group">
-      <label for="custArea">지역</label>
-      <input id="custArea" name="지역" type="text" />
-    </div>
-
-    <div class="form-group">
-      <label for="issueType">고장증상</label>
-      <select id="issueType" name="고장증상">
-        <option>부팅 불가</option>
-        <option>액정 파손</option>
-        <option>발열/소음</option>
-        <option>데이터복구</option>
-        <option>충전/배터리</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="issueDetail">상세증상</label>
-      <textarea id="issueDetail" name="상세내용"></textarea>
-    </div>
-
-    <button type="submit" class="submit-btn">접수하기</button>
-  </form>
-
-  <script src="script.js"></script>
-</body>
-</html>
+          <div class="hero-text">
+            <p class="hero-sub">
+              <span class="hero-bullets">당일 점검 · 방문 접수 · 택배 수리 지원</span><br />
+              정품 부품 / 합리적인 비용
