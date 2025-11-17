@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // ⭐ 제출 즉시 팝업 표시 (지연 없음)
+    // ⭐ 제출 즉시 성공 팝업 표시
     if (successBox) {
       successBox.style.display = "block";
     }
@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // ⭐ 폼 초기화
     form.reset();
 
-    // ⭐ Google Apps Script로 백그라운드 전송
-    fetch("https://script.google.com/macros/s/AKfycbyrTN2ef8oEYJ1kg4QqlnmtfihqqggZzGNRwmvPD8SK4frbj_Yh8pok2TfT2-Ncl-ed/exec", {
+    // ⭐ Google Apps Script로 백그라운드 전송 (CORS 완전 차단 모드)
+    fetch("https://script.google.com/macros/s/AKfycbyIqXn0rZVtbqQKnoWBqVJCrPC62GuTN09PbSxK9I6u3NXyENd2kwmbNdfYlnLa0oLR/exec", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      mode: "no-cors",   // ⛔ 절대 수정 금지 — CORS 완전 무력화
       body: JSON.stringify({
         "성함": name,
         "연락처": phone,
