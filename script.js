@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
 
     // ⭐ 서버(GAS)로 백그라운드 전송
-    fetch("https://script.google.com/macros/s/AKfycbyYmv2XzsDI1anLSY0kGQjXhz8BtL16PtPiiqGAzWi8vdPAtZ9PNgwm5cDyF2HvRJM-/exec", {
+    fetch("https://script.google.com/macros/s/AKfycby_yctfTq00kSUJ5qFKWISVjHbCmfpyYS1wXkedqudyjM8mk5aS10HIkIqijV4edkat/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
