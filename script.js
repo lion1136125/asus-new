@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      await fetch("https://formsubmit.co/ajax/noteservice@outlook.kr", {
+      await fetch("https://formsubmit.co/ajax/notebook250709@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
