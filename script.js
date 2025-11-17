@@ -18,26 +18,52 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Google Apps Script Webhook URL
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbx94GHuO48pxyyqIuTIhrcznVdBJAXnlqh0UzfY1hUGVcq9kaHFwl5DLDuUqpB3rk32/exec";
+
+    // Telegram 알림 (원하면 끄기 가능)
+    const TELEGRAM_TOKEN = "8349082958:AAEYnQuo8NKw1Ewa0YEo90oGd3aAkeFrnqM";  
+    const TELEGRAM_CHAT_ID = "8232731852";  
+
+    const message =
+`📌 ASUS 서비스센터 신규 접수
+-----------------------------
+👤 성함: ${name}
+📞 연락처: ${phone}
+📍 지역: ${area}
+💡 증상: ${issueType}
+📝 상세: ${issueDetail}
+`;
+
     try {
-      await fetch("https://formsubmit.co/ajax/notebook250709@gmail.com", {
+      // 1) Google Apps Script로 전송 (→ Gmail로 들어옴)
+      await fetch(GAS_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          "성함": name,
-          "연락처": phone,
-          "지역/주소": area,
-          "고장 증상": issueType,
-          "상세 설명": issueDetail,
-          "_subject": "홈페이지 신규 A/S 접수",
-          "_template": "table",
-          "_captcha": "false"
+          name,
+          phone,
+          area,
+          issueType,
+          issueDetail
         })
       });
+
+      // 2) Telegram 알림 전송
+      fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message
+        })
+      });
+
     } catch (err) {
-      console.error("전송 오류", err);
+      console.error("전송 오류:", err);
     }
 
     if (successBox) {
@@ -48,64 +74,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ===== Desktop: disable tel: links so they do nothing on PC =====
-(function(){
-  function disableTelOnDesktop(){
-    if (window.matchMedia && window.matchMedia('(min-width: 960px)').matches){
-      document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
-        a.addEventListener('click', function(e){ e.preventDefault(); }, { passive:false });
-        a.style.cursor = 'default';
+
+// ===== 데스크탑에서 tel: 비활성화 =====
+(function () {
+  function disableTelOnDesktop() {
+    if (window.matchMedia && window.matchMedia("(min-width: 960px)").matches) {
+      document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+        }, { passive: false });
+        a.style.cursor = "default";
       });
     }
   }
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', disableTelOnDesktop);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", disableTelOnDesktop);
   } else {
     disableTelOnDesktop();
   }
-  // Re-run on resize in case viewport crosses breakpoint
-  window.addEventListener('resize', disableTelOnDesktop);
+  window.addEventListener("resize", disableTelOnDesktop);
 })();
-
-
-
-// === Telegram notification ===
-async function sendTelegram(name, phone, area, issueType, issueDetail) {
-  const text =
-`📌 ASUS 서비스센터 신규 접수
-
-👤 성함: ${name}
-📱 연락처: ${phone}
-📍 지역: ${area}
-💡 증상: ${issueType}
-📝 상세: ${issueDetail}`;
-
-  try {
-    await fetch("https://api.telegram.org/bot8349082958:AAEYnQuo8NKw1Ewa0YEo90oGd3aAkeFrnqM/sendMessage", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: "8232731852",
-        text: text
-      })
-    });
-  } catch(err) {
-    console.error("텔레그램 전송 오류", err);
-  }
-}
-
-// Hook into form submit
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("serviceForm");
-  if(!form) return;
-
-  form.addEventListener("submit", async (e) => {
-    const name = document.getElementById("custName").value.trim();
-    const phone = document.getElementById("custPhone").value.trim();
-    const area = document.getElementById("custArea").value.trim();
-    const issueType = document.getElementById("issueType").value;
-    const issueDetail = document.getElementById("issueDetail").value.trim();
-
-    sendTelegram(name, phone, area, issueType, issueDetail);
-  });
-});
