@@ -19,12 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ⭐ 제출 즉시 팝업 표시 (지연 없음)
-    if (successBox) successBox.style.display = "block";
+    if (successBox) {
+      successBox.style.display = "block";
+    }
 
     // ⭐ 폼 초기화
     form.reset();
 
-    // ⭐ 서버(GAS)로 백그라운드 전송
+    // ⭐ Google Apps Script로 백그라운드 전송
     fetch("https://script.google.com/macros/s/AKfycby_yctfTq00kSUJ5qFKWISVjHbCmfpyYS1wXkedqudyjM8mk5aS10HIkIqijV4edkat/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -33,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "연락처": phone,
         "지역/주소": area,
         "고장 증상": issue,
-        "상세 설명": detail,
-      }),
+        "상세 설명": detail
+      })
     }).catch((err) => {
       console.error("전송 오류:", err);
     });
